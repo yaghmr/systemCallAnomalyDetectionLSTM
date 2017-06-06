@@ -1,6 +1,6 @@
 # xxxx
 
-System call anomaly detection using nulti-HMMs
+System call anomaly detection using multi-HMMs
 
 dataset: 
 UNM system call dataset 
