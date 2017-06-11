@@ -3,7 +3,7 @@
 
 __author__ ="Ktian"
 import os
-
+import sys
 
 def readfilesfromAdir(dataset):
     #read a list of files
@@ -12,7 +12,6 @@ def readfilesfromAdir(dataset):
     for i in files:
         files_absolute_paths.append(dataset+str(i))
     return files_absolute_paths
-
 
 
 file = "ADFA-LD/Training_Data_Master/UTD-0001.txt"
@@ -24,7 +23,14 @@ def readCharsFromFile(file):
     return channel_values
     #print (channel_values[800:819])
 
+def get_attack_subdir(path):
 
+    subdirectories = os.listdir(path)
+    for i in range(0,len(subdirectories)):
+        subdirectories[i] = path + subdirectories[i]
+
+    print (subdirectories)
+    return (subdirectories)
 
 def get_all_call_sequences(dire):
     files = readfilesfromAdir(dire)
@@ -32,7 +38,7 @@ def get_all_call_sequences(dire):
     print (len(files))
 
     for eachfile in files:
-        if eachfile.endswith("txt"):
+        if not eachfile.endswith("DS_Store"):
             allthelist.append(readCharsFromFile(eachfile))
         else:
             print (eachfile)
@@ -51,8 +57,15 @@ def get_all_call_sequences(dire):
     print ("The length elements:")
     print (len(elements))
     print (len(allthelist))
-
+    return (elements)
 
 if __name__ == "__main__":
     dirc = "ADFA-LD/Training_Data_Master/"
-    get_all_call_sequences(dirc)
+    dirc_val = "ADFA-LD/Validation_Data_Master/"
+    dic_attack ="ADFA-LD/Attack_Data_Master/"
+    #train1 = get_all_call_sequences(dirc)
+
+    get_attack_subdir(dic_attack)
+    #print ("XxxxxxxXXXXXXXXXXX")
+    #val1 = get_all_call_sequences(dirc_val)
+    #att = get_all_call_sequences(dic_attack)
