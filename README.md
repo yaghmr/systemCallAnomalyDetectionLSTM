@@ -23,3 +23,10 @@ char-based system call
 https://github.com/karpathy/char-rnn
 char NN 
 
+
+padding the sequence
+https://stackoverflow.com/questions/42002717/how-should-we-pad-text-sequence-in-keras-using-pad-sequences
+
+https://github.com/fchollet/keras/issues/1641
+
+
