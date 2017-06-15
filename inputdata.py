@@ -73,6 +73,19 @@ def get_all_call_sequences(dire):
     return (allthelist)
 
 
+#one function do one thing
+def sequence_n_gram_parsing(alist,n_gram=20):
+
+    if len(alist) <= n_gram:
+        return alist
+
+    ans = []
+    for i in range(0,len(alist)-n_gram,1):
+        tmp = alist[i:i+n_gram]
+        ans.append(list(tmp))
+    pass
+    return (ans)
+
 ## shift the data for analysis
 def shift(seq, n):
     n = n % len(seq)
