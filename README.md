@@ -30,3 +30,5 @@ https://stackoverflow.com/questions/42002717/how-should-we-pad-text-sequence-in-
 https://github.com/fchollet/keras/issues/1641
 
 
+Sample code:
+http://machinelearningmastery.com/time-series-prediction-lstm-recurrent-neural-networks-python-keras/
