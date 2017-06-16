@@ -5,7 +5,8 @@ __author__ ="Ktian"
 import os
 import sys
 import numpy as np
-from keras.preprocessing.sequence import pad_sequences
+
+import io_helper
 
 def readfilesfromAdir(dataset):
     #read a list of files
@@ -33,6 +34,7 @@ def get_attack_subdir(path):
     print (subdirectories)
     return (subdirectories)
 
+
 def get_all_call_sequences(dire):
     files = readfilesfromAdir(dire)
     allthelist = []
@@ -56,6 +58,9 @@ def get_all_call_sequences(dire):
     print ("The total unique elements:")
     print (elements)
 
+    print ("The maximum number of elements:")
+    print (max(elements))
+
     #print ("The length elements:")
     #print (len(elements))
     print (len(allthelist))
@@ -68,23 +73,8 @@ def get_all_call_sequences(dire):
 
 
     print ("The maximum length of a sequence is that {}".format(_max))
-    padInputData(allthelist)
 
     return (allthelist)
-
-
-#one function do one thing
-def sequence_n_gram_parsing(alist,n_gram=20):
-
-    if len(alist) <= n_gram:
-        return alist
-
-    ans = []
-    for i in range(0,len(alist)-n_gram+1,1):
-        tmp = alist[i:i+n_gram]
-        ans.append(list(tmp))
-    pass
-    return (ans)
 
 ## shift the data for analysis
 def shift(seq, n):
@@ -92,13 +82,77 @@ def shift(seq, n):
     return seq[n:] + seq[:n]
 
 
-def padInputData(sequences,batchsize=20):
-    x = pad_sequences(sequences, maxlen=batchsize, dtype='int32',
-                         padding='pre', truncating='pre', value=0.)
-    print ("Padding")
-    print (type(x))
-    print (x.shape)
-    pass
+def convertToOneHot(vector, num_classes=None):
+    """
+    Converts an input 1-D vector of integers into an output
+    2-D array of one-hot vectors, where an i'th input value
+    of j will set a '1' in the i'th row, j'th column of the
+    output array.
+
+    Example:
+        v = np.array((1, 0, 4))
+        one_hot_v = convertToOneHot(v)
+        print one_hot_v
+
+        [[0 1 0 0 0]
+         [1 0 0 0 0]
+         [0 0 0 0 1]]
+    """
+
+    assert isinstance(vector, np.ndarray)
+    assert len(vector) > 0
+
+    if num_classes is None:
+        num_classes = np.max(vector)+1
+    else:
+        assert num_classes > 0
+        assert num_classes >= np.max(vector)
+
+    result = np.zeros(shape=(len(vector), num_classes))
+    result[np.arange(len(vector)), vector] = 1
+    return result.astype(int)
+
+"""
+The num_class here is set as 341
+"""
+
+#one function do one thing
+def sequence_n_gram_parsing(alist,n_gram=20,num_class=341):
+    if len(alist) <= n_gram:
+        return alist
+
+    ans = []
+    for i in range(0,len(alist)-n_gram+1,1):
+        tmp = alist[i:i+n_gram]
+        oneHot = convertToOneHot(np.asarray(tmp), num_class)
+        ans.append(oneHot)
+
+    #transform into nmup arrray
+    ans = np.array(ans)
+    return (ans)
+
+def lists_of_list_into_big_matrix(allthelist,n_gram=20):
+
+    array = sequence_n_gram_parsing(allthelist[0])
+
+    for i in range(1,len(allthelist),1):
+        tmp = sequence_n_gram_parsing(allthelist[i])
+        print ("tmp shape")
+        print (tmp.shape)
+
+        array = np.concatenate((array, tmp), axis=0)
+
+        print ("array shape")
+        print (array.shape)
+
+        raw_input()
+
+    print (array.shape)
+    print ("done")
+    io_helper.saveintopickle(array,"array.pickle")
+
+
+
 
 if __name__ == "__main__":
     dirc = "ADFA-LD/Training_Data_Master/"
@@ -106,9 +160,13 @@ if __name__ == "__main__":
     dic_attack ="ADFA-LD/Attack_Data_Master/"
     #train1 = get_all_call_sequences(dirc)
 
-    test = [i for i in range(0,20)]
-    print (sequence_n_gram_parsing(test))
+    #test = [i for i in range(0,300)]
+    #array = sequence_n_gram_parsing(test)
+    #print (type(array))
+    #print (array.shape)
+
     #get_attack_subdir(dic_attack)
     #print ("XxxxxxxXXXXXXXXXXX")
     #val1 = get_all_call_sequences(dirc_val)
-    #att = get_all_call_sequences(dic_attack)
+    att = get_all_call_sequences(dirc)
+    lists_of_list_into_big_matrix(att)
