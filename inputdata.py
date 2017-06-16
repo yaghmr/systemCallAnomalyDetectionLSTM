@@ -80,7 +80,7 @@ def sequence_n_gram_parsing(alist,n_gram=20):
         return alist
 
     ans = []
-    for i in range(0,len(alist)-n_gram,1):
+    for i in range(0,len(alist)-n_gram+1,1):
         tmp = alist[i:i+n_gram]
         ans.append(list(tmp))
     pass
@@ -104,8 +104,10 @@ if __name__ == "__main__":
     dirc = "ADFA-LD/Training_Data_Master/"
     dirc_val = "ADFA-LD/Validation_Data_Master/"
     dic_attack ="ADFA-LD/Attack_Data_Master/"
-    train1 = get_all_call_sequences(dirc)
+    #train1 = get_all_call_sequences(dirc)
 
+    test = [i for i in range(0,20)]
+    print (sequence_n_gram_parsing(test))
     #get_attack_subdir(dic_attack)
     #print ("XxxxxxxXXXXXXXXXXX")
     #val1 = get_all_call_sequences(dirc_val)
