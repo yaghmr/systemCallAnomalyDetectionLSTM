@@ -149,7 +149,7 @@ def lists_of_list_into_big_matrix(allthelist,n_gram=20):
 
     print (array.shape)
     print ("done")
-    io_helper.saveintopickle(array,"array.pickle")
+    io_helper.saveintopickle(array,"array_test.pickle")
 
 
 

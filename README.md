@@ -2,7 +2,7 @@
 
 System call anomaly detection using multi-HMMs
 
-dataset: 
+## dataset:
 UNM system call dataset 
 
 https://www.cs.unm.edu/~immsec/data/synth-sm.html
@@ -25,10 +25,20 @@ char NN
 
 
 padding the sequence
+
 https://stackoverflow.com/questions/42002717/how-should-we-pad-text-sequence-in-keras-using-pad-sequences
 
 https://github.com/fchollet/keras/issues/1641
 
 
-Sample code:
+## Sample code:
+
 http://machinelearningmastery.com/time-series-prediction-lstm-recurrent-neural-networks-python-keras/
+
+
+https://github.com/aurotripathy/lstm-anomaly-detect
+
+
+# Run
+
+
