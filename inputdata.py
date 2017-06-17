@@ -137,15 +137,22 @@ def lists_of_list_into_big_matrix(allthelist,n_gram=20):
 
     for i in range(1,len(allthelist),1):
         tmp = sequence_n_gram_parsing(allthelist[i])
-        print ("tmp shape")
-        print (tmp.shape)
+
+        #print ("tmp shape")
+        #print (tmp.shape)
 
         array = np.concatenate((array, tmp), axis=0)
 
-        print ("array shape")
-        print (array.shape)
 
-        raw_input()
+        percent = (i+0.0)/len(allthelist)
+        io_helper.drawProgressBar(percent)
+
+        if (len(array)> 20000):
+            break
+        #print ("array shape")
+        #print (array.shape)
+
+
 
     print (array.shape)
     print ("done")
