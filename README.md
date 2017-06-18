@@ -2,7 +2,7 @@
 
 System call anomaly detection using multi-HMMs
 
-## dataset:
+## Dataset:
 UNM system call dataset 
 
 https://www.cs.unm.edu/~immsec/data/synth-sm.html
@@ -10,7 +10,6 @@ https://www.cs.unm.edu/~immsec/data/synth-sm.html
 
 ADFA-LD:
 https://www.unsw.adfa.edu.au/australian-centre-for-cyber-security/cybersecurity/ADFA-IDS-Datasets/
-
 
 
 LSTM-BASED SYSTEM-CALL LANGUAGE MODELING AND ROBUST ENSEMBLE METHOD FOR DESIGNING HOST-BASED INTRUSION DETECTION SYSTEMS
@@ -30,6 +29,9 @@ https://stackoverflow.com/questions/42002717/how-should-we-pad-text-sequence-in-
 
 https://github.com/fchollet/keras/issues/1641
 
+
+paper:
+LSTM-Based System-Call Language Modeling and Robust Ensemble Method for Designing Host-Based Intrusion Detection Systems.
 
 ## Sample code:
 
