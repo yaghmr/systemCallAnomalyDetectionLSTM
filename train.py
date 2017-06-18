@@ -10,13 +10,14 @@ from keras.models import Sequential
 
 
 
+import preprocess
 
 # Global hyper-parameters
-sequence_length = 100
+sequence_length = 19
 random_data_dup = 10  # each sample randomly duplicated between 0 and 9 times, see dropin function
 epochs = 1
 batch_size = 50
-
+feature_dimension = 341
 
 
 
@@ -24,10 +25,10 @@ batch_size = 50
 
 def build_model():
     model = Sequential()
-    layers = {'input': 1, 'hidden1': 64, 'hidden2': 256, 'hidden3': 100, 'output': 1}
+    layers = {'input': feature_dimension, 'hidden1': 64, 'hidden2': 256, 'hidden3': 100, 'output': feature_dimension}
 
     model.add(LSTM(
-            input_length=sequence_length - 1,
+            input_length=sequence_length,
             input_dim=layers['input'],
             output_dim=layers['hidden1'],
             return_sequences=True))
@@ -54,14 +55,15 @@ def build_model():
 
 
 def run_network(model=None, data=None):
+
     global_start_time = time.time()
 
     if data is None:
         print 'Loading data... '
         # train on first 700 samples and test on next 300 samples (has anomaly)
-        X_train, y_train, X_test, y_test = get_split_prep_data(0, 700, 500, 1000)
+        X_train, y_train  = preprocess.preprocess()
     else:
-        X_train, y_train, X_test, y_test = data
+        X_train, y_train = data
 
     print ("X_train, y_train,shape")
     print (X_train.shape)
@@ -70,17 +72,21 @@ def run_network(model=None, data=None):
 
     if model is None:
         model = build_model()
-
-    try:
         print("Training...")
         model.fit(
                 X_train, y_train,
-                batch_size=batch_size, nb_epoch=epochs, validation_split=0.05)
+                batch_size=batch_size,
+                epochs=epochs,
+                validation_split=0.05)
         model.summary()
-        print("Predicting...")
-        predicted = model.predict(X_test)
-        print("Reshaping predicted")
-        predicted = np.reshape(predicted, (predicted.size,))
+        print("Done Training...")
+
+    #predicted = model.predict(X_test)
+    #print("Reshaping predicted")
+    #predicted = np.reshape(predicted, (predicted.size,))
+
+
+    """
     except KeyboardInterrupt:
         print("prediction exception")
         print 'Training duration (s) : ', time.time() - global_start_time
@@ -105,3 +111,7 @@ def run_network(model=None, data=None):
     print 'Training duration (s) : ', time.time() - global_start_time
 
     return model, y_test, predicted
+    """
+
+if __name__ == "__main__":
+    run_network()

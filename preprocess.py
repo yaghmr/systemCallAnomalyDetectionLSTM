@@ -24,11 +24,16 @@ def dropin(X, y):
 
 
 def preprocess():
-    num_calsses = 341
-    arrayfile = "array.pickle"
-    array = io_helper.loadfrompickle(arrayfile)
-    print (array.shape)
 
+    arrayfile = "/Users/ketian/Desktop/array_test.pickle"
+    array = io_helper.loadfrompickle(arrayfile)
+    x_train = array[:,:-1]
+    y_train = array[:,-1]
+
+    print ("The train data size is that ")
+    print (x_train.shape)
+    print (y_train.shape)
+    return (x_train,y_train)
 
 
 if __name__ =="__main__":
