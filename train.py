@@ -7,19 +7,16 @@ import time
 from keras.layers.core import Dense, Activation, Dropout
 from keras.layers.recurrent import LSTM
 from keras.models import Sequential
-
+from keras.models import model_from_json
 
 
 import preprocess
 
 # Global hyper-parameters
 sequence_length = 19
-random_data_dup = 10  # each sample randomly duplicated between 0 and 9 times, see dropin function
 epochs = 1
 batch_size = 50
 feature_dimension = 341
-
-
 
 
 

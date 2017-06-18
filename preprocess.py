@@ -3,6 +3,9 @@ import numpy as np
 import io_helper
 
 
+random_data_dup = 10  # each sample randomly duplicated between 0 and 9 times, see dropin function
+
+
 def dropin(X, y):
     """
     The name suggests the inverse of dropout, i.e. adding more samples. See Data Augmentation section at
