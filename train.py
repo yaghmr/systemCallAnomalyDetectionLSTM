@@ -19,6 +19,26 @@ batch_size = 50
 feature_dimension = 341
 
 
+def save_model_weight_into_file(model, modelname="model.json", weight="model.h5"):
+    model_json = model.to_json()
+    with open(modelname, "w") as json_file:
+        json_file.write(model_json)
+    # serialize weights to HDF5
+    model.save_weights(weight)
+    print("Saved model to disk in {} and {}".format(modelname,weight))
+
+
+def load_model_and_wieght_from_file(modelname="model.json", weight="model.h5"):
+
+    json_file = open(modelname, 'r')
+    loaded_model_json = json_file.read()
+    json_file.close()
+    loaded_model = model_from_json(loaded_model_json)
+    # load weights into new model
+    loaded_model.load_weights(weight)
+    print("Loaded model from disk, you can do more analysis more")
+
+    pass
 
 def build_model():
     model = Sequential()
@@ -46,7 +66,10 @@ def build_model():
     model.add(Activation("linear"))
 
     start = time.time()
-    model.compile(loss="mse", optimizer="rmsprop")
+
+    model.compile(loss="categorical_crossentropy", optimizer="sgd")
+    #model.compile(loss="mse", optimizer="rmsprop")
+
     print "Compilation Time : ", time.time() - start
     return model
 

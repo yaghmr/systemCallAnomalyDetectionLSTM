@@ -30,6 +30,11 @@ https://stackoverflow.com/questions/42002717/how-should-we-pad-text-sequence-in-
 https://github.com/fchollet/keras/issues/1641
 
 
+loss functions;
+
+https://keras.io/losses/#categorical_crossentropy
+
+
 paper:
 LSTM-Based System-Call Language Modeling and Robust Ensemble Method for Designing Host-Based Intrusion Detection Systems.
 
@@ -48,30 +53,18 @@ X_Train (20298, 19, 341)
 Y_Train (20298, 341)
 
 19283/19283 [==============================] - 147s - loss: 0.0024 - val_loss: 0.0022
-```python
-_________________________________________________________________
-Layer (type)                 Output Shape              Param #
-=================================================================
-lstm_1 (LSTM)                (None, 19, 64)            103936
-_________________________________________________________________
-dropout_1 (Dropout)          (None, 19, 64)            0
-_________________________________________________________________
-lstm_2 (LSTM)                (None, 19, 256)           328704
-_________________________________________________________________
-dropout_2 (Dropout)          (None, 19, 256)           0
-_________________________________________________________________
-lstm_3 (LSTM)                (None, 100)               142800
-_________________________________________________________________
-dropout_3 (Dropout)          (None, 100)               0
-_________________________________________________________________
-dense_1 (Dense)              (None, 341)               34441
-_________________________________________________________________
-activation_1 (Activation)    (None, 341)               0
-=================================================================
-Total params: 609,881
-Trainable params: 609,881
-Non-trainable params: 0
-_________________________________________________________________
-```
+
+
+another losses
+
+model.compile(loss="categorical_crossentropy", optimizer="rmsprop")
+
+19283/19283 [==============================] - 153s - loss: 10.5728 - val_loss: 8.1006
+
+
+model.compile(loss="categorical_crossentropy", optimizer="sgd")
+
+19283/19283 [==============================] - 148s - loss: 9.8008 - val_loss: 13.7872
+
 Done Training...
 
