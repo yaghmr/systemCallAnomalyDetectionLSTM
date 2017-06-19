@@ -68,6 +68,11 @@ model.compile(loss="categorical_crossentropy", optimizer="sgd")
 
 Done Training...
 
+remove linear
+
+19283/19283 [==============================] - 146s - loss: 2.7506 - val_loss: 2.2816
+
+19283/19283 [==============================] - 146s - loss: 2.7523 - acc: 0.2363 - val_loss: 2.1657 - val_acc: 0.3626
 
 https://github.com/fchollet/keras/blob/master/keras/backend/tensorflow_backend.py
 line 2725

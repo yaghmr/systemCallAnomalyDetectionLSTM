@@ -62,12 +62,12 @@ def build_model():
     model.add(Dropout(0.2))
 
     model.add(Dense(
-            output_dim=layers['output']))
-    model.add(Activation("linear"))
+            output_dim=layers['output'],activation='softmax'))
+    #model.add(Activation("linear"))
 
     start = time.time()
 
-    model.compile(loss="categorical_crossentropy", optimizer="sgd")
+    model.compile(loss="categorical_crossentropy", optimizer='rmsprop',  metrics=['accuracy'])
     #model.compile(loss="mse", optimizer="rmsprop")
 
     print "Compilation Time : ", time.time() - start
