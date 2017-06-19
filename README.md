@@ -68,3 +68,6 @@ model.compile(loss="categorical_crossentropy", optimizer="sgd")
 
 Done Training...
 
+
+https://github.com/fchollet/keras/blob/master/keras/backend/tensorflow_backend.py
+line 2725
