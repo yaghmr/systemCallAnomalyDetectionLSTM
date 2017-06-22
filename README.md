@@ -79,5 +79,6 @@ line 2725
 
 ### TODO
 1) dropout 0.5
-2) visualization
+2) visualization 
+Slides:http://www.robots.ox.ac.uk/seminars/Extra/2015_07_06_AndrejKarpathy.pdf
 3) state-transition probability  
