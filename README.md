@@ -76,3 +76,8 @@ remove linear
 
 https://github.com/fchollet/keras/blob/master/keras/backend/tensorflow_backend.py
 line 2725
+
+### TODO
+1) dropout 0.5
+2) visualization
+3) state-transition probability  
