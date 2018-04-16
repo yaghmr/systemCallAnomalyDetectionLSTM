@@ -1,6 +1,6 @@
-# xxxx
+# System call-based anomaly detection 
 
-System call anomaly detection using multi-HMMs
+System call anomaly detection with LSTM (reproduction?)
 
 ## Dataset:
 UNM system call dataset 
