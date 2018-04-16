@@ -12,6 +12,8 @@ ADFA-LD:
 https://www.unsw.adfa.edu.au/australian-centre-for-cyber-security/cybersecurity/ADFA-IDS-Datasets/
 
 
+## References
+
 LSTM-BASED SYSTEM-CALL LANGUAGE MODELING AND ROBUST ENSEMBLE METHOD FOR DESIGNING HOST-BASED INTRUSION DETECTION SYSTEMS
 https://arxiv.org/pdf/1611.01726.pdf
 
@@ -48,6 +50,7 @@ https://github.com/aurotripathy/lstm-anomaly-detect
 
 # Run
 
+```
 The train data size is that
 X_Train (20298, 19, 341)
 Y_Train (20298, 341)
@@ -73,7 +76,7 @@ remove linear
 19283/19283 [==============================] - 146s - loss: 2.7506 - val_loss: 2.2816
 
 19283/19283 [==============================] - 146s - loss: 2.7523 - acc: 0.2363 - val_loss: 2.1657 - val_acc: 0.3626
-
+```
 
 ### TODO
 1) dropout 0.5
