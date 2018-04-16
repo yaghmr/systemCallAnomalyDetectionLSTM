@@ -74,8 +74,6 @@ remove linear
 
 19283/19283 [==============================] - 146s - loss: 2.7523 - acc: 0.2363 - val_loss: 2.1657 - val_acc: 0.3626
 
-https://github.com/fchollet/keras/blob/master/keras/backend/tensorflow_backend.py
-line 2725
 
 ### TODO
 1) dropout 0.5
