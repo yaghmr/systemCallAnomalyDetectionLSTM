@@ -30,12 +30,13 @@ def read_hdf5(path):
     return weights
 
 
-def save_model_weight_into_file(model, modelname="model.json", weight="model.h5"):
+def save_model_weight_into_file(model, modelname="model.json", weight="model.h5", keras_model="keras_model.h5"):
     model_json = model.to_json()
     with open(modelname, "w") as json_file:
         json_file.write(model_json)
     # serialize weights to HDF5
     model.save_weights(weight)
+    model.save(keras_model)
     print("Saved model to disk in {} and {}".format(modelname, weight))
 
 
@@ -122,11 +123,11 @@ def run_network(model=None):
 
     print('Training duration (s) : ', time.time() - global_start_time)
 
-    save_model_weight_into_file(model)
-
     return model, y_test, predicted
 
 
 if __name__ == "__main__":
-    run_network()
+    model, y_test, predicted = run_network()
+    save_model_weight_into_file(model)
+
     #print(read_hdf5('model.h5'))
