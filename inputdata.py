@@ -41,10 +41,7 @@ def get_all_call_sequences(dire):
     print (len(files))
 
     for eachfile in files:
-        if not eachfile.endswith("DS_Store"):
-            allthelist.append(readCharsFromFile(eachfile))
-        else:
-            print ("Skip the file "+ str(eachfile))
+        allthelist.append(readCharsFromFile(eachfile))
 
     elements = []
     for item in allthelist:
@@ -52,18 +49,18 @@ def get_all_call_sequences(dire):
             if key not in elements:
                 elements.append(key)
 
-    elements = map(int,elements)
+    elements = map(int, elements)
     elements = sorted(elements)
 
-    print ("The total unique elements:")
-    print (elements)
+    print("The total unique elements:")
+    print(elements)
 
-    print ("The maximum number of elements:")
-    print (max(elements))
+    print("The maximum number of elements:")
+    print(max(elements))
 
-    #print ("The length elements:")
-    #print (len(elements))
-    print (len(allthelist))
+    #print("The length elements:")
+    #print(len(elements))
+    print(len(allthelist))
 
     #clean the all list data set
     _max = 0
@@ -71,10 +68,9 @@ def get_all_call_sequences(dire):
         _max = max(_max,len(allthelist[i]))
         allthelist[i] = map(int,allthelist[i])
 
+    print("The maximum length of a sequence is that {}".format(_max))
 
-    print ("The maximum length of a sequence is that {}".format(_max))
-
-    return (allthelist)
+    return allthelist
 
 ## shift the data for analysis
 def shift(seq, n):
@@ -117,7 +113,8 @@ The num_class here is set as 341
 """
 
 #one function do one thing
-def sequence_n_gram_parsing(alist,n_gram=20,num_class=341):
+def sequence_n_gram_parsing(alist, n_gram=20, num_class=341):
+    alist = list(alist)
     if len(alist) <= n_gram:
         return alist
 
@@ -129,33 +126,32 @@ def sequence_n_gram_parsing(alist,n_gram=20,num_class=341):
 
     #transform into nmup arrray
     ans = np.array(ans)
-    return (ans)
+    return ans
 
-def lists_of_list_into_big_matrix(allthelist,n_gram=20):
+def lists_of_list_into_big_matrix(allthelist, t, n_gram=20):
 
     array = sequence_n_gram_parsing(allthelist[0])
 
     for i in range(1,len(allthelist),1):
         tmp = sequence_n_gram_parsing(allthelist[i])
 
-        #print ("tmp shape")
-        #print (tmp.shape)
+        #print("tmp shape")
+        #print(tmp.shape)
 
         array = np.concatenate((array, tmp), axis=0)
-
 
         percent = (i+0.0)/len(allthelist)
         io_helper.drawProgressBar(percent)
 
         if (len(array)> 20000):
             break
-        #print ("array shape")
-        #print (array.shape)
 
+        #print("array shape")
+        #print(array.shape)
 
-    print (array.shape)
-    print ("done")
-    io_helper.saveintopickle(array,"array_test.pickle")
+    print(array.shape)
+    print("done")
+    io_helper.saveintopickle(array, "array_" + t + ".pickle")
 
 
 
@@ -174,4 +170,7 @@ if __name__ == "__main__":
     #print ("XxxxxxxXXXXXXXXXXX")
     #val1 = get_all_call_sequences(dirc_val)
     att = get_all_call_sequences(dirc)
-    lists_of_list_into_big_matrix(att)
+    lists_of_list_into_big_matrix(att, 'train')
+
+    test = get_all_call_sequences(dirc_val)
+    lists_of_list_into_big_matrix(test, 'test')

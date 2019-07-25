@@ -1,9 +1,9 @@
-# System call-based anomaly detection 
+# System call-based anomaly detection
 
 System call anomaly detection with LSTM (reproduction?)
 
 ## Dataset:
-UNM system call dataset 
+UNM system call dataset
 
 https://www.cs.unm.edu/~immsec/data/synth-sm.html
 
@@ -15,30 +15,25 @@ https://www.unsw.adfa.edu.au/australian-centre-for-cyber-security/cybersecurity/
 
 ## References
 
-LSTM-BASED SYSTEM-CALL LANGUAGE MODELING AND ROBUST ENSEMBLE METHOD FOR DESIGNING HOST-BASED INTRUSION DETECTION SYSTEMS
-https://arxiv.org/pdf/1611.01726.pdf
+Idea: char-based system call
 
-Idea:
-char-based system call 
-
-
-https://github.com/karpathy/char-rnn -char NN 
+https://github.com/karpathy/char-rnn -char NN
 
 
 padding the sequence
 
 https://stackoverflow.com/questions/42002717/how-should-we-pad-text-sequence-in-keras-using-pad-sequences
-
 https://github.com/fchollet/keras/issues/1641
 
 
 loss functions;
-
 https://keras.io/losses/#categorical_crossentropy
 
 
 paper:
 LSTM-Based System-Call Language Modeling and Robust Ensemble Method for Designing Host-Based Intrusion Detection Systems.
+https://arxiv.org/pdf/1611.01726.pdf
+
 
 ## Sample code:
 
@@ -66,10 +61,15 @@ remove linear
 19283/19283 [==============================] - 146s - loss: 2.7523 - acc: 0.2363 - val_loss: 2.1657 - val_acc: 0.3626
 ```
 
+## Steps
+```
+python inputdata.py
+python train.py
+```
+
+
 ### TODO
 1) dropout 0.5
-2) visualization 
+2) visualization
 Slides:http://www.robots.ox.ac.uk/seminars/Extra/2015_07_06_AndrejKarpathy.pdf
 3) state-transition probability  
-
-
